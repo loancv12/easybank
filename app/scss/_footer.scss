@@ -1,0 +1,110 @@
+@use "variables" as *;
+@use "mixins" as *;
+.footer {
+  background-color: $darkBlue;
+  color: $white;
+  padding: 40px;
+  text-align: center;
+
+  .container {
+    @include breakpoint-up(large) {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 3fr;
+      grid-template-rows: 1fr auto;
+      grid-template-areas:
+        "logo links1 links2 cta"
+        "social links1 links2 copy";
+      justify-items: left;
+    }
+  }
+
+  a {
+    color: $white;
+  }
+  &__logo {
+    display: block;
+    margin-bottom: 30px;
+    @include breakpoint-up(large) {
+      grid-area: logo;
+      margin-bottom: 0;
+    }
+  }
+  &__social {
+    margin-bottom: 30px;
+
+    a {
+      display: inline-block;
+      svg path {
+        transition: fill 150ms ease-in-out;
+      }
+      &:hover svg path {
+        fill: $limeGreen;
+      }
+    }
+    a:not(:last-child) {
+      margin-right: 15px;
+    }
+
+    @include breakpoint-up(large) {
+      grid-area: social;
+      margin-bottom: 0;
+      align-self: self-end;
+      height: 20px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+      line-height: 2.25;
+      transition: color 150ms ease-in-out;
+      &:hover {
+        color: $limeGreen;
+      }
+    }
+    @include breakpoint-up(large) {
+      align-items: start;
+      font-size: 1.5rem;
+      justify-content: space-between;
+    }
+    &.col1 {
+      @include breakpoint-up(large) {
+        grid-area: links1;
+      }
+    }
+
+    &.col2 {
+      margin-bottom: 30px;
+      @include breakpoint-up(large) {
+        grid-area: links2;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__cta {
+    a.button {
+      display: inline-block;
+      @include breakpoint-down(medium) {
+        margin-bottom: 30px;
+      }
+    }
+
+    @include breakpoint-up(large) {
+      grid-area: cta;
+      justify-self: right;
+    }
+  }
+
+  &__copyright {
+    @include breakpoint-up(large) {
+      grid-area: copy;
+      justify-self: right;
+      align-self: flex-end;
+      color: $grayishBlue;
+      font-size: 1.5rem;
+    }
+  }
+}

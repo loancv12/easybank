@@ -1,0 +1,129 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.hero{
+    overflow-x: clip;
+    .container{
+        @include breakpoint-up(large){
+            display: flex;
+            align-items: center;
+        }
+    }
+    &__image{
+        position: relative;
+        background-image: url('/images/bg-intro-mobile.svg');
+        min-height: 280px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+
+        @include breakpoint-up(medium){
+            min-height: 400px;
+            background-position: center 70%;
+        }
+
+        @include breakpoint-up(large){
+
+            flex: 3 1 0%;
+            order: 2;
+            min-height: 656px;
+            background-image: none;
+            
+        }
+
+        &::before{
+            @include breakpoint-up(large){
+                content: '';
+                position: absolute;
+                display: block;
+                height: 100%;
+                width: calc(100% + max((100vw - 1110px)/2, 0px));
+                background-image: url('/images/bg-intro-desktop.svg');
+                background-position: 0% 60%;
+                background-size: 160%;
+
+            }
+
+        }
+
+       
+
+        &::after{
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url('/images/image-mockups.png');
+            background-size: 94%;
+            background-repeat: no-repeat;
+            background-position: center 90%;
+
+            @include breakpoint-up(medium){
+                min-height: 400px;
+                background-size: 50%;
+                background-position: center center;
+            }
+
+            @include breakpoint-up(large){
+                height: 120%;
+                left: 17%;
+            background-size: 85%;
+            background-position: center 85%;
+
+                width: calc(100% + max((100vw - 1110px)/2, 0px));
+            }
+
+           
+            
+
+
+        }
+    }
+
+    &__text{
+        text-align: center;
+        @include breakpoint-up(large){
+        text-align: left;
+
+            flex: 2 1 0%;
+            order: 1;
+            padding-top: 169px ;
+            padding-bottom: 169px ;
+            padding-left: 24px;
+            
+        }
+        h1{
+            font-weight: 300;
+            // padding: 0 44px;
+            font-size: 5rem;
+            line-height: 1.15;
+            color: $darkBlue;
+            margin-bottom: 20px;
+            margin-top: 45px;
+            @include breakpoint-up(large){
+                margin-top: 0;
+            }
+        }
+        p{
+            line-height: 1.5;
+            margin-bottom: 34px;
+            color: $grayishBlue;
+
+        }
+
+        
+    }
+
+    &__cta{
+        display: inline-block;
+        margin-bottom: 80px;
+        @include breakpoint-up(large){
+            margin-bottom: 0;
+        }
+    }
+}
+
+

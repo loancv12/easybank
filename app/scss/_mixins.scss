@@ -1,0 +1,30 @@
+@use "sass:map";
+// Breakpoints
+// desktop
+@media  (min-width: 64em) {
+    // stlyes
+}
+
+// 640, 1024, 1400
+// at the px and bigger, use this styles
+$breakpoint-up: ("medium": "40em" , "large": "64em", "xlarge": "87.5em");
+// 639, 1023, 1399
+$breakpoint-down: ("small": "39.9375em" , "medium": "63.9375em","large": "87.4375em");
+
+@mixin breakpoint-down($size){
+    @media  (max-width: map-get($breakpoint-down, $size)) {
+        @content;
+    }
+};
+
+@mixin breakpoint-up($size){
+    @media  (min-width: map.get($breakpoint-up, $size)) {
+        @content;
+    }
+}
+// desktop
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
